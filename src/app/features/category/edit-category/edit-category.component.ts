@@ -4,6 +4,7 @@ import {Subscription} from 'rxjs';
 import {CategoryService} from '../services/category.service';
 import {Category} from '../models/category.model';
 import {UpdateCategoryRequest} from '../models/update-category-request';
+import {resolve} from '@angular/compiler-cli';
 
 @Component({
   selector: 'app-edit-category',
@@ -57,4 +58,13 @@ export class EditCategoryComponent implements  OnInit, OnDestroy{
     this.paramsSubscription?.unsubscribe()
     this.editCateforySubscription?.unsubscribe()
   }
+
+  onDelete() {
+    if (this.id) {
+      this.categoryService.deleteCategory(this.id).subscribe({
+        next:(resolve)=>{
+          this.router.navigateByUrl('/admin/categories');
+        }
+      })
+    }  }
 }
