@@ -24,7 +24,7 @@ const routes: Routes = [
     component:BlogpostListComponent
   },
   {
-    path:'admin/blogpost/add',
+    path:'admin/blogposts/add',
     component:AddBlogpostComponent
   }
 ];
