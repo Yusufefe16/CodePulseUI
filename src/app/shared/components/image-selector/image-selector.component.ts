@@ -27,7 +27,9 @@ export class ImageSelectorComponent implements OnInit{
   ngOnInit() {
     this.getImages();
   }
-
+  selectImage(image: BlogImage) {
+    this.imageService.selectImage(image)
+  }
   onFileUploadChange(event: Event) {
     const element = event.currentTarget as HTMLInputElement;
     this.file = element.files?.[0]
@@ -51,6 +53,7 @@ export class ImageSelectorComponent implements OnInit{
   private getImages(){
     this.images$ =this.imageService.getAllImages();
   }
+
 
 
 }
