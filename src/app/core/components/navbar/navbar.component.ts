@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../../features/auth/services/auth.service';
+import {User} from '../../../features/auth/models/user.model';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -8,8 +10,11 @@ import {AuthService} from '../../../features/auth/services/auth.service';
 })
 export class NavbarComponent implements OnInit{
 
+  user ?: User;
+
   constructor(
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {
   }
 
@@ -17,8 +22,15 @@ export class NavbarComponent implements OnInit{
     this.authService.user()
       .subscribe({
       next: res=>{
-        console.log(res)
+        this.user = res
       }
     })
+
+    this.user = this.authService.getUser()
+  }
+
+  onLogout() {
+    this.authService.logout()
+    this.router.navigateByUrl('/')
   }
 }
