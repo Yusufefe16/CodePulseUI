@@ -31,6 +31,13 @@ export class LoginComponent {
         // set Auth cookie
         this.cookieService.set('Authorization', `Bearer ${res.token}`,
           undefined, '/', undefined, true, 'Strict');
+
+        // Set User
+        this.authService.setUser({
+          email: res.email,
+          roles: res.roles
+        })
+
         // Redirect back to Home
         this.router.navigateByUrl('/')
         console.log(res)
