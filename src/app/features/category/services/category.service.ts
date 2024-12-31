@@ -26,26 +26,14 @@ export class CategoryService {
   }
 
   addCategory(model: AddCategoryRequest):Observable<void>{
-    return  this.http.post<void>(`${environment.apiBaseUrl}/api/categories`,model,{
-      headers: {
-        'Authorization': this.cookiService.get('Authorization')
-      }
-    })
+    return  this.http.post<void>(`${environment.apiBaseUrl}/api/categories?addAurh=true`,model)
   }
 
   updateCategory(id:string, updateCategoryRequest: UpdateCategoryRequest):Observable<Category>{
-    return this.http.put<Category>(`${environment.apiBaseUrl}/api/Categories/${id}`,updateCategoryRequest,{
-      headers: {
-        'Authorization': this.cookiService.get('Authorization')
-      }
-    })
+    return this.http.put<Category>(`${environment.apiBaseUrl}/api/Categories/${id}?addAurh=true`,updateCategoryRequest)
   }
 
   deleteCategory(id:string):Observable<Category>{
-    return this.http.delete<Category>(`${environment.apiBaseUrl}/api/Categories/${id}`,{
-      headers: {
-        'Authorization': this.cookiService.get('Authorization')
-      }
-    })
+    return this.http.delete<Category>(`${environment.apiBaseUrl}/api/Categories/${id}?addAurh=true`)
   }
 }
