@@ -23,4 +23,8 @@ export class CategoryListComponent implements OnInit{
   onSearch(query: string) {
     this.categories$ =this.categoryService.getAllCategories(query);
   }
+
+  sort(sortBy: string, sortDireciton: string) {
+    this.categories$ =this.categoryService.getAllCategories(undefined, sortBy, sortDireciton);
+  }
 }

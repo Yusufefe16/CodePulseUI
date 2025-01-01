@@ -17,11 +17,20 @@ export class CategoryService {
     private cookiService: CookieService
   ) { }
 
-  getAllCategories(query?: string):Observable<Category[]>{
+  getAllCategories(query?: string, sortBy?: string, sortDirection?: string):Observable<Category[]>{
     let params = new HttpParams();
 
     if (query){
       params = params.set('query',query)
+    }
+
+    if (sortBy){
+      params = params.set('sortBy', sortBy)
+    }
+
+    if (sortDirection){
+      params = params.set('sortDirection', sortDirection)
+
     }
 
     return this.http.get<Category[]>(`${environment.apiBaseUrl}/api/Categories`,{
