@@ -18,7 +18,7 @@ export const authGuard: CanActivateFn = (route, state) => {
     const decodedToken:any = jwtDecode(token)
 
     // check if token has expired
-    const expirationDate = decodedToken.exp * 100
+    const expirationDate = decodedToken.exp * 1000
     const currentTime = new Date().getTime()
     if (expirationDate < currentTime){
       //Logout
